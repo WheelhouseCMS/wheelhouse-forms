@@ -11,5 +11,9 @@ module Forms::Fields
         end
       end
     end
+    
+    def to_ary
+      fields
+    end
   end
 end

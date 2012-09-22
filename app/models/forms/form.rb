@@ -53,11 +53,7 @@ class Forms::Form < Wheelhouse::Resource
   end
   
   def first_content_field
-    @first_content_field ||= begin
-      result = fields.first
-      result = result.fields.first if result.is_a?(Forms::Fields::FieldSet)
-      result
-    end
+    @first_content_field ||= fields.flatten.find { |f| f.respond_to?(:label) }
   end
   
   def recipients_string
