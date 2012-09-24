@@ -156,7 +156,7 @@ function refreshFields() {
     var prefix = $('#fields').attr("data-prefix") + "[" + index + "]";
     $(this).attr('data-index', index);
     
-    $('> input, label > input, > textarea', this).each(function() { replacePrefix(this, prefix); });
+    $('input:not(.fields input), textarea:not(.fields textarea)', this).each(function() { replacePrefix(this, prefix); });
     $('> .fields', this).attr('data-prefix', prefix + "[fields]");
   });
   
