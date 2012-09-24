@@ -12,7 +12,9 @@ module Forms::Fields
   
   protected
     def radio_button(option)
-      content_tag(:label, :class => "option") { radio_button_tag(name, option, false, :id => nil) + " " + option }
+      content_tag(:label, :class => "option #{option.parameterize}") do
+        radio_button_tag(name, option, false, :id => nil) + " " + option
+      end
     end
   end
 end

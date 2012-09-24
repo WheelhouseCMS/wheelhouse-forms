@@ -12,7 +12,9 @@ module Forms::Fields
   
   protected
     def checkbox(option)
-      content_tag(:label, :class => "option") { check_box_tag("#{name}[]", option, false, :id => nil) + " " + option }
+      content_tag(:label, :class => "option #{option.parameterize}") do
+        check_box_tag("#{name}[]", option, false, :id => nil) + " " + option
+      end
     end
   end
 end
