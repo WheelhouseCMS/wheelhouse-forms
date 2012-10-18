@@ -9,6 +9,7 @@
   = field_template "checkbox-template", Forms::Fields::Checkbox
   = field_template "checkboxes-template", Forms::Fields::Checkboxes
   = field_template "radio-buttons-template", Forms::Fields::RadioButtons
+  = field_template "submit-button-template", Forms::Fields::SubmitButton
   = field_template "states-dropdown-template", Forms::Fields::StatesDropdown
   = field_template "countries-dropdown-template", Forms::Fields::CountriesDropdown
   = field_template "content-field-template", Forms::Fields::ContentField
@@ -40,6 +41,7 @@
     %li.checkboxes= link_to "Add Checkboxes", "#"
     %li.radio-buttons= link_to "Add Radio Buttons", "#"
     %li.field-set= link_to "Add Field Set", "#"
+    %li.submit-button= link_to "Add Submit Button", "#"
   
   %ul#extra-tools.tools
     %li.states-dropdown= link_to "Add States Dropdown", "#"

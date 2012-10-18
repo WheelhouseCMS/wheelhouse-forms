@@ -71,11 +71,11 @@
     background: #fdfefe
     border: 1px solid #ccc
     
-    .placeholder, .text-field, .text-area, .select-field, .checkbox, .states-dropdown, .countries-dropdown, .radio-buttons, .checkboxes, .custom-field, .content-field
+    .placeholder, .text-field, .text-area, .select-field, .checkbox, .submit-button, .states-dropdown, .countries-dropdown, .radio-buttons, .checkboxes, .custom-field, .content-field
       margin-left: 0
       margin-right: 0
     
-  .text-field, .text-area, .select-field, .checkbox, .states-dropdown, .countries-dropdown, .radio-buttons, .checkboxes, .custom-field, .content-field
+  .text-field, .text-area, .select-field, .checkbox, .submit-button, .states-dropdown, .countries-dropdown, .radio-buttons, .checkboxes, .custom-field, .content-field
     +field
     min-height: 26px
     padding: 6px 6px 6px 38px
@@ -102,7 +102,7 @@
   .select-field, .states-dropdown, .countries-dropdown
     +green
   
-  .custom-field
+  .submit-button, .custom-field
     +purple
   
   .drag-placeholder
@@ -185,6 +185,9 @@
   
   &.field-set a
     background-image: image-url("wheelhouse-forms/field-set.png")
+  
+  &.submit-button a
+    background-image: image-url("wheelhouse-forms/submit-button.png")
   
   &.states-dropdown a
     background-image: image-url("wheelhouse-forms/states.png")

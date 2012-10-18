@@ -25,7 +25,8 @@ class Forms::Form < Wheelhouse::Resource
   
   def render(template)
     form_tag(path) do
-      fields.to_html(template) + content_tag(:div, submit_tag("Submit"), :class => "submit")
+      concat fields.to_html(template)
+      concat default_submit_button unless has_submit_button?
     end
   end
   
@@ -73,5 +74,13 @@ class Forms::Form < Wheelhouse::Resource
   end
   
   def controller
+  end
+  
+  def has_submit_button?
+    fields.flatten.any? { |f| f.is_a?(Forms::Fields::SubmitButton) }
+  end
+  
+  def default_submit_button
+    content_tag(:div, submit_tag("Submit"), :class => "submit")
   end
 end

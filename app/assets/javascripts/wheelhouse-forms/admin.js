@@ -110,6 +110,7 @@ $('.tools li.text-area a').click(insertFieldHandler("#text-area-template"));
 $('.tools li.select-field a').click(insertFieldHandler("#select-field-template", true));
 $('.tools li.checkbox a').click(insertFieldHandler("#checkbox-template"));
 $('.tools li.checkboxes a').click(insertFieldHandler("#checkboxes-template", true));
+$('.tools li.submit-button a').click(insertFieldHandler("#submit-button-template"));
 $('.tools li.radio-buttons a').click(insertFieldHandler("#radio-buttons-template", true));
 $('.tools li.states-dropdown a').click(insertFieldHandler("#states-dropdown-template"));
 $('.tools li.countries-dropdown a').click(insertFieldHandler("#countries-dropdown-template"));
