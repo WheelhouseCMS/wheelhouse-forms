@@ -3,9 +3,11 @@
 - sidebar do
   .buttons
     = button "Form Designer", :icon => :publish, :url => edit_form_path(@form)
-  
-  /%p.export-csv
-  /  = link_to "Export Results as CSV", "#"#, forms_form_submissions_path(@form, :format => :csv)
+
+  %hr
+
+  %ul
+    %li= link_to "Export results as CSV", form_submissions_path(@form, :format => :csv), :class => "export-csv"
   
   %hr
 

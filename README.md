@@ -20,8 +20,7 @@ The following field types are supported:
 Features yet to implement:
 
  - server-side submission validation
- - CSV exporting of submissions
- 
+
 
 Installation & Usage
 --------------------
