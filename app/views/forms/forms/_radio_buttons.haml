@@ -3,19 +3,20 @@
   
   .drag= image_tag "wheelhouse-forms/radio-buttons.png", :alt => "Radio Buttons", :title => "Radio Buttons"
   
-  %input{:type => "text", :name => "#{prefix}[label]", :title => "Radio Buttons Label", :placeholder => "Radio Buttons Label", :value => radio_buttons.label}
+  .drag-area
+    %input{:type => "text", :name => "#{prefix}[label]", :title => "Radio Buttons Label", :placeholder => "Radio Buttons Label", :value => radio_buttons.label}
   
-  %label.required
-    %input{:type => "checkbox", :name => "#{prefix}[required]", :value => "1", :checked => radio_buttons.required?}
-    This field is required
+    %label.required
+      %input{:type => "checkbox", :name => "#{prefix}[required]", :value => "1", :checked => radio_buttons.required?}
+      This field is required
   
-  = link_to "Delete", '#', :class => 'delete'
+    = link_to "Delete", '#', :class => 'delete'
   
-  %ul.options
-    %li
-      %label Options:
-      
-    - radio_buttons.options(true).each do |option|
+    %ul.options
       %li
-        %input{:type => "text", :name => "#{prefix}[options][]", :value => option}
+        %label Options:
+      
+      - radio_buttons.options(true).each do |option|
+        %li
+          %input{:type => "text", :name => "#{prefix}[options][]", :value => option}
   

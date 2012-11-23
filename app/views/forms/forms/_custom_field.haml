@@ -3,8 +3,9 @@
   
   .drag= image_tag "wheelhouse-forms/custom.png", :alt => "Custom Field", :title => "Custom Field"
   
-  %input{:type => "text", :name => "#{prefix}[label]", :title => "Custom Field Label", :placeholder => "Custom Field Label", :value => custom_field.label}
+  .drag-area
+    %input{:type => "text", :name => "#{prefix}[label]", :title => "Custom Field Label", :placeholder => "Custom Field Label", :value => custom_field.label}
   
-  %input{:type => "text", :name => "#{prefix}[partial]", :title => "Partial", :placeholder => "Partial", :value => custom_field.partial}
+    %input{:type => "text", :name => "#{prefix}[partial]", :title => "Partial", :placeholder => "Partial", :value => custom_field.partial}
 
   = link_to "Delete", '#', :class => 'delete'

@@ -3,7 +3,7 @@
 =field
   position: relative
   margin: 10px 0
-  padding: 10px 10px 10px 20px
+  padding: 0 0 0 32px
   +border-radius(4px)
 
 =colored-field( $background, $border, $text )
@@ -27,6 +27,9 @@
 
 =purple
   +colored-field(#fdfafd, #e3d2e3, #987898)
+
+.drag-area
+  padding: 6px
 
 #fields
   label
@@ -70,6 +73,8 @@
     +field
     background: #fdfefe
     border: 1px solid #ccc
+    padding-left: 14px
+    padding-right: 5px
     
     .placeholder, .text-field, .text-area, .select-field, .checkbox, .submit-button, .states-dropdown, .countries-dropdown, .radio-buttons, .checkboxes, .custom-field, .content-field
       margin-left: 0
@@ -78,7 +83,6 @@
   .text-field, .text-area, .select-field, .checkbox, .submit-button, .states-dropdown, .countries-dropdown, .radio-buttons, .checkboxes, .custom-field, .content-field
     +field
     min-height: 26px
-    padding: 6px 6px 6px 38px
     
     input[type=text]
       width: 50%
@@ -110,8 +114,18 @@
     border: 1px dashed #ccc
     padding: 6px 6px 6px 38px
   
-  .custom-field input[type=text]
-    width: 40%
+  .content-field
+    a.delete
+      top: 14px
+      right: 14px
+    
+  .field-set .content-field
+    a.delete
+      right: 12px
+  
+  .custom-field
+    input[type=text]
+      width: 40%
   
   ul.options
     line-height: 2.6em

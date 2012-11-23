@@ -2,11 +2,12 @@
   %input{:type => "hidden", :name => "#{prefix}[type]", :value => field_set.type}
   
   .drag
+
+  .drag-area  
+    %label{:for => "fieldset_#{index}_legend"} Fieldset Legend:
+    %input{:id => "fieldset_#{index}_legend", :type => "text", :name => "#{prefix}[legend]", :value => field_set.legend}
   
-  %label{:for => "fieldset_#{index}_legend"} Fieldset Legend:
-  %input{:id => "fieldset_#{index}_legend", :type => "text", :name => "#{prefix}[legend]", :value => field_set.legend}
-  
-  %span.note (leave blank for none)
+    %span.note (leave blank for none)
 
   .fields{ "data-prefix" => "form[fields][#{index}][fields]" }
     = render_fields(field_set.fields, "form[fields][#{index}][fields]")

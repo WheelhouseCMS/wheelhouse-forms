@@ -3,18 +3,19 @@
   
   .drag= image_tag "wheelhouse-forms/select.png", :alt => "Select Field", :title => "Select Field"
   
-  %input{:type => "text", :name => "#{prefix}[label]", :title => "Select Field Label", :placeholder => "Select Field Label", :value => select_field.label}
+  .drag-area
+    %input{:type => "text", :name => "#{prefix}[label]", :title => "Select Field Label", :placeholder => "Select Field Label", :value => select_field.label}
   
-  %label.required
-    %input{:type => "checkbox", :name => "#{prefix}[required]", :value => "1", :checked => select_field.required?}
-    This field is required
+    %label.required
+      %input{:type => "checkbox", :name => "#{prefix}[required]", :value => "1", :checked => select_field.required?}
+      This field is required
   
-  = link_to "Delete", '#', :class => 'delete'
+    = link_to "Delete", '#', :class => 'delete'
   
-  %ul.options
-    %li
-      %label Options:
-      
-    - select_field.options(true).each do |option|
+    %ul.options
       %li
-        %input{:type => "text", :name => "#{prefix}[options][]", :value => option}
+        %label Options:
+      
+      - select_field.options(true).each do |option|
+        %li
+          %input{:type => "text", :name => "#{prefix}[options][]", :value => option}

@@ -3,6 +3,7 @@
   
   .drag= image_tag "wheelhouse-forms/content.png", :alt => "Content Field", :title => "Content Field"
   
-  %textarea.editor{:name => "#{prefix}[content]", :rows => 5}= content_field.content
+  .drag-area
+    %textarea.editor{:name => "#{prefix}[content]", :rows => 5}= content_field.content
   
   = link_to "Delete", '#', :class => 'delete'

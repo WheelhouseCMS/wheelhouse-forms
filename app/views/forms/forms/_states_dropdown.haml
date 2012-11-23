@@ -3,14 +3,15 @@
   
   .drag= image_tag "wheelhouse-forms/states.png", :alt => "States Dropdown", :title => "States Dropdown"
   
-  %input{:type => "text", :name => "#{prefix}[label]", :title => "States Dropdown Label", :placeholder => "States Dropdown Label", :value => states_dropdown.label}
+  .drag-area
+    %input{:type => "text", :name => "#{prefix}[label]", :title => "States Dropdown Label", :placeholder => "States Dropdown Label", :value => states_dropdown.label}
   
-  %label.required
-    %input{:type => "checkbox", :name => "#{prefix}[required]", :value => "1", :checked => states_dropdown.required?}
-    This field is required
+    %label.required
+      %input{:type => "checkbox", :name => "#{prefix}[required]", :value => "1", :checked => states_dropdown.required?}
+      This field is required
   
-  %select{:name => "#{prefix}[country]"}
-    %option{:value => "US"} US States
-    %option{:value => "Australia"} Australian States
+    %select{:name => "#{prefix}[country]"}
+      %option{:value => "US"} US States
+      %option{:value => "Australia"} Australian States
   
   = link_to "Delete", '#', :class => 'delete'

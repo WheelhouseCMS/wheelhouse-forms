@@ -2,11 +2,12 @@
   %input{:type => "hidden", :name => "#{prefix}[type]", :value => basic_field.type}
   
   .drag= image_tag "wheelhouse-forms/#{icon}.png", :alt => description, :title => description
+
+  .drag-area
+    %input{:type => "text", :name => "#{prefix}[label]", :title => "#{description} Label", :placeholder => "#{description} Label", :value => basic_field.label}
   
-  %input{:type => "text", :name => "#{prefix}[label]", :title => "#{description} Label", :placeholder => "#{description} Label", :value => basic_field.label}
-  
-  %label.required
-    %input{:type => "checkbox", :name => "#{prefix}[required]", :value => "1", :checked => basic_field.required?}
-    This field is required
+    %label.required
+      %input{:type => "checkbox", :name => "#{prefix}[required]", :value => "1", :checked => basic_field.required?}
+      This field is required
   
   = link_to "Delete", '#', :class => 'delete'
