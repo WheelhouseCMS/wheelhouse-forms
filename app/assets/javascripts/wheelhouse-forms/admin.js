@@ -104,9 +104,15 @@ var BaseSortableOptions = {
   handle:      '> .drag',
   placeholder: 'drag-placeholder',
   tolerance:   'intersect',
+  connectWith: '.fields',
   forcePlaceholderSize: true,
-  stop:        refreshFields,
-  connectWith: '.fields'
+  start: function(e, ui) {
+    $('textarea.editor', ui.item).removeEditor();
+  },
+  stop: function(e, ui) {
+    $('textarea.editor', ui.item).editor();
+    refreshFields();
+  }
 };
 var SortableOptions = $.extend({}, BaseSortableOptions, { connectWith: '#fields, .fields' });
 
