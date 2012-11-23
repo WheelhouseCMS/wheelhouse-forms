@@ -13,14 +13,14 @@ module Forms::SubmissionsHelper
     when Forms::Fields::TextArea
       labelled_field(field) do
         value = @submission.value_for(field)
-        form.text_area field.label, :value => value, :readonly => true, :rows => 5
+        form.text_area field.label, :value => value || "", :readonly => true, :rows => 5
       end
     when Forms::Fields::ContentField
       # Nothing
     else
       labelled_field(field) do
         value = @submission.value_for(field)
-        form.text_field field.label, :value => value, :readonly => true
+        form.text_field field.label, :value => value || "", :readonly => true
       end
     end
   end
@@ -50,21 +50,21 @@ private
       when Hash
         render_hash(field, value)
       else
-        form.text_field field.label, :value => value, :readonly => true
+        form.text_field field.label, :value => value || "", :readonly => true
       end
     end
   end
   
   def render_array(field, array)
     content_tag(:ul, safe_join(array.map { |value|
-      content_tag(:li, form.text_field("#{field.label}[]", :value => value, :readonly => true))
+      content_tag(:li, form.text_field("#{field.label}[]", :value => value || "", :readonly => true))
     }))
   end
   
   def render_hash(field, hash)
     content_tag(:div, :class => "inline") do
       safe_join(hash.map { |key, value|
-        form.label("#{field.label} #{key}", key) + form.text_field("#{field.label} #{key}", :value => value, :readonly => true, :size => nil)
+        form.label("#{field.label} #{key}", key) + form.text_field("#{field.label} #{key}", :value => value || "", :readonly => true, :size => nil)
       })
     end
   end

@@ -1,7 +1,30 @@
 class Forms::Submission < Wheelhouse::BasicResource
+  class Parameters < Hash
+    def to_mongo
+      result = []
+      each do |key, value|
+        result << [key, value]
+      end
+      result
+    end
+    
+    def self.cast(params)
+      case params
+      when Hash
+        self[params]
+      when Array
+        self[*params.flatten]
+      end
+    end
+    
+    def self.from_mongo(params)
+      cast(params)
+    end
+  end
+  
   include Wheelhouse::Resource::AdminPath
   
-  property :params, Hash
+  property :params, Parameters
   timestamps!
   
   belongs_to :form, :class => "Forms::Form"
