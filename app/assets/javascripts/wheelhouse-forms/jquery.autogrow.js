@@ -1,8 +1,8 @@
 $.fn.autoGrowInput = function(o) {
   o = $.extend({
-      maxWidth: 1000,
-      minWidth: 0,
-      comfortZone: 10
+      maxWidth: 400,
+      minWidth: 150,
+      comfortZone: 40
     }, o);
 
   this.filter('input:text').each(function() {
