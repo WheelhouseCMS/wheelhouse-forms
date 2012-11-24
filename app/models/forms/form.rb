@@ -10,6 +10,8 @@ class Forms::Form < Wheelhouse::Resource
   property :recipients, MongoModel::Collection[String]
   property :subject, String, :default => "Form Submission"
   
+  validates_associated :fields
+  
   has_many :submissions, :class => "Forms::Submission"
   
   activities :all

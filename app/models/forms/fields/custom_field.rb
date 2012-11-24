@@ -1,6 +1,6 @@
 module Forms::Fields
   class CustomField < Field
-    property :label, String
+    property :label, String, :required => true
     property :partial, String
 
     def to_html(template)
