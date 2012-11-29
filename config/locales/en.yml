@@ -1,9 +1,4 @@
 en:
-  resource:
-    attributes:
-      forms/form:
-        recipients_string: Recipients
-  
   helpers:
     label:
       form:

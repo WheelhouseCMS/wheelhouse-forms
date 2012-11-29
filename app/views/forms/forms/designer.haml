@@ -23,8 +23,8 @@
   = content
 
 - tab :email do
-  = field :recipients_string do
-    = form.text_field :recipients_string
+  = field :recipients do
+    = form.text_field :recipients, :value => @form.recipients.join(', ')
     = note "Separate email addresses with commas."
   
   = field :subject do

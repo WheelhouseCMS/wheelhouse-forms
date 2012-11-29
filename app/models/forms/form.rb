@@ -59,12 +59,9 @@ class Forms::Form < Wheelhouse::Resource
     @first_content_field ||= fields.flatten.find { |f| f.respond_to?(:label) }
   end
   
-  def recipients_string
-    recipients.join(', ')
-  end
-  
-  def recipients_string=(recipients)
-    self.recipients = recipients.split(/,/).map(&:strip)
+  def recipients=(recipients)
+    recipients = recipients.split(/,/) if recipients.is_a?(String)
+    write_attribute(:recipients, recipients.map(&:strip))
   end
   
   def handler
