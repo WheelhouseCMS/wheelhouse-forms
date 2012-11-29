@@ -30,6 +30,12 @@
 
 .drag-area
   padding: 6px
+  margin-left: -32px
+  padding-left: 38px
+  
+  .field-set > &
+    margin-left: -14px
+    padding-left: 20px
 
 #fields
   label
@@ -74,11 +80,13 @@
     background: #fdfefe
     border: 1px solid #ccc
     padding-left: 14px
-    padding-right: 5px
     
     .placeholder, .text-field, .text-area, .select-field, .checkbox, .submit-button, .states-dropdown, .countries-dropdown, .radio-buttons, .checkboxes, .custom-field, .content-field
       margin-left: 0
       margin-right: 0
+    
+    .fields
+      margin-right: 5px
     
   .text-field, .text-area, .select-field, .checkbox, .submit-button, .states-dropdown, .countries-dropdown, .radio-buttons, .checkboxes, .custom-field, .content-field
     +field
