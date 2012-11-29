@@ -18,27 +18,25 @@ class Forms::Form < Wheelhouse::Resource
   
   icon "wheelhouse-forms/form.png"
   
-  include ActionView::Helpers::FormTagHelper
-  attr_accessor :output_buffer, :context
+  attr_accessor :context
   
   def to_s
     render(context)
   end
   
   def render(template)
-    form_tag(path) do
-      concat fields.to_html(template)
-      concat default_submit_button unless has_submit_button?
-    end
+    Forms::FormRenderer.new(self).render(template)
   end
   
   def submit(params)
-    submissions.build(:params => params) do |submission|
-      submission.save!
-      deliver(submission)
-    end
+    submission = submissions.build(:params => params)
     
-    @success = true
+    if submission.save
+      deliver(submission)
+      @success = true
+    else
+      @success = false
+    end
   end
   
   def deliver(submission)
@@ -66,20 +64,5 @@ class Forms::Form < Wheelhouse::Resource
   
   def handler
     Forms::FormHandler
-  end
-  
-  def protect_against_forgery?
-    false
-  end
-  
-  def controller
-  end
-  
-  def has_submit_button?
-    fields.flatten.any? { |f| f.is_a?(Forms::Fields::SubmitButton) }
-  end
-  
-  def default_submit_button
-    content_tag(:div, submit_tag("Submit"), :class => "submit")
   end
 end
