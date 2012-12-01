@@ -1,8 +1,9 @@
 module Forms::Fields
-  class CountriesDropdown < SelectField
-    properties.delete(:options)
-  
-    property :label, String, :default => "Country"
+  class CountriesDropdown < Field
+    property :label, String, :default => "Country", :required => true
+    property :required, Boolean, :default => false
+    
+    self.renderer = Forms::SelectFieldRenderer
 
     def options
       COUNTRIES

@@ -18,14 +18,19 @@ class Forms::Form < Wheelhouse::Resource
   
   icon "wheelhouse-forms/form.png"
   
-  attr_accessor :context
+  attr_accessor :view_context, :current_submission
   
   def to_s
-    render(context)
+    render(:template => view_context)
   end
   
-  def render(template)
-    Forms::FormRenderer.new(self).render(template)
+  def render(template_or_options={})
+    options = template_or_options.is_a?(Hash) ? template_or_options : { :template => template_or_options }
+    renderer.render(options.merge(:submission => current_submission))
+  end
+  
+  def renderer
+    Forms::FormRenderer.new(self)
   end
   
   def submit(params)
@@ -35,6 +40,7 @@ class Forms::Form < Wheelhouse::Resource
       deliver(submission)
       @success = true
     else
+      self.current_submission = submission
       @success = false
     end
   end
@@ -47,10 +53,6 @@ class Forms::Form < Wheelhouse::Resource
   
   def success?
     @success
-  end
-  
-  def errors?
-    false
   end
   
   def first_content_field

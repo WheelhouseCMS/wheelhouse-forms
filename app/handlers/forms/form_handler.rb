@@ -12,6 +12,6 @@ class Forms::FormHandler < Wheelhouse::ResourceHandler
 
 private
   def set_form_context
-    @form.context = view_context
+    @form.view_context = view_context
   end
 end

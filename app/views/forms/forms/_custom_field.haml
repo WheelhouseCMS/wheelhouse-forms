@@ -1,5 +1,5 @@
 .custom-field{ 'data-index' => index }
-  %input{:type => "hidden", :name => "#{prefix}[type]", :value => custom_field.type}
+  %input{:type => "hidden", :name => "#{prefix}[type]", :value => custom_field.type.demodulize}
   
   .drag= image_tag "wheelhouse-forms/custom.png", :alt => "Custom Field", :title => "Custom Field"
   

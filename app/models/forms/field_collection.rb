@@ -1,10 +1,4 @@
 class Forms::FieldCollection < MongoModel::Collection[Forms::Fields::Field]
-  include ActionView::Helpers::OutputSafetyHelper
-  
-  def to_html(template)
-    safe_join(map { |field| field.to_html(template) })
-  end
-  
   def map_with_index
     result = []
     each_with_index { |item, index| result[index] = yield(item, index) }
@@ -19,5 +13,9 @@ class Forms::FieldCollection < MongoModel::Collection[Forms::Fields::Field]
     else
       super
     end
+  end
+  
+  def renderer
+    Forms::FieldCollectionRenderer.new(self)
   end
 end

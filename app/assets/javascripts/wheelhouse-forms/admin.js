@@ -46,7 +46,7 @@ $('.tools li.content-field a').click(insertFieldHandler("#content-field-template
 $('.tools li.custom-field a').click(insertFieldHandler("#custom-field-template"));
 
 $('.tools li.field-set a').click(function() {
-  var nextIndex = parseInt($('.field-set:last', root).attr('data-index')) + 1 || 0;
+  var nextIndex = parseInt($('#fields > :last-child').attr('data-index')) + 1 || 0;
   var fieldset = $('#field-set-template').tmpl({ index: nextIndex, prefix: prefixFor(root, nextIndex) });
   fieldset.appendTo(root);
   
@@ -83,7 +83,9 @@ function refreshFields() {
     var prefix = $('#fields').attr("data-prefix") + "[" + index + "]";
     $(this).attr('data-index', index);
     
-    $('input:not(.fields input), textarea:not(.fields textarea)', this).each(function() { replacePrefix(this, prefix); });
+    $('input:not(.fields input), textarea:not(.fields textarea), select:not(.fields select)', this).each(function() {
+      replacePrefix(this, prefix);
+    });
     $('> .fields', this).attr('data-prefix', prefix + "[fields]");
   });
   
@@ -94,7 +96,7 @@ function refreshFields() {
       var prefix = fieldsPrefix + "[" + index + "]";
       $(this).attr('data-index', index);
       
-      $('input, textarea', this).each(function() { replacePrefix(this, prefix); });
+      $('input, textarea, select', this).each(function() { replacePrefix(this, prefix); });
     });
   });
 }

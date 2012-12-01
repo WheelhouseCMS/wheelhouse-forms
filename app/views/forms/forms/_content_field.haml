@@ -1,5 +1,5 @@
 .content-field{ 'data-index' => index }
-  %input{:type => "hidden", :name => "#{prefix}[type]", :value => content_field.type}
+  %input{:type => "hidden", :name => "#{prefix}[type]", :value => content_field.type.demodulize}
   
   .drag= image_tag "wheelhouse-forms/content.png", :alt => "Content Field", :title => "Content Field"
   

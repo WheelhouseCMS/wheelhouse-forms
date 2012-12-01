@@ -1,50 +1,27 @@
 module Forms::Fields
   class Field < Wheelhouse::EmbeddedResource
-    include ActionView::Helpers::FormTagHelper
-    include ActionView::Helpers::OutputSafetyHelper
-    attr_accessor :output_buffer
-
+    class_attribute :renderer
+    self.renderer = Forms::FieldRenderer
+    
+    def renderer
+      self.class.renderer.new(self)
+    end
+    
+    def required?
+      read_attribute(:required)
+    end
+    
     def self.partial
       name.demodulize.underscore
-    end
-
-    def self.field_class
-      partial.dasherize
     end
     
     def self.cast(attrs)
       case attrs
       when Hash
-        type = attrs.delete(:type)
-        klass = type ? type.constantize : self
-        klass.new(attrs)
+        type = attrs.delete('type')
+        Forms::Fields.const_get(type).new(attrs)
       else
         super
-      end
-    end
-    
-    delegate :field_class, :to => "self.class"
-
-    def to_html(template)
-      content_tag(:div, :class => classes.join(" ")) { yield if block_given? }
-    end
-
-    def name
-      "submission[#{reference}]"
-    end
-
-  protected
-    def html_options
-      options = {}
-      options[:required] = "required" if respond_to?(:required?) && required?
-      options
-    end
-    
-    def classes
-      ["field"].tap do |classes|
-        classes << field_class
-        classes << "required" if respond_to?(:required?) && required?
-        classes << reference.parameterize if respond_to?(:reference)
       end
     end
   end

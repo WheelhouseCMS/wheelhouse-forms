@@ -1,15 +1,16 @@
 class Forms::FormRenderer
   include ActionView::Helpers::FormTagHelper
-  
+
   attr_accessor :output_buffer
+  attr_reader :form
   
   def initialize(form)
     @form = form
   end
   
-  def render(template)
-    form_tag(@form.path) do
-      concat @form.fields.to_html(template)
+  def render(options={})
+    form_tag(form.path) do
+      concat form.fields.renderer.render(options)
       concat default_submit_button unless has_submit_button?
     end
   end
@@ -18,12 +19,9 @@ class Forms::FormRenderer
     false
   end
   
-  def controller
-  end
-  
 private
   def has_submit_button?
-    @form.fields.flatten.any? { |f| f.is_a?(Forms::Fields::SubmitButton) }
+    form.fields.flatten.any? { |f| f.is_a?(Forms::Fields::SubmitButton) }
   end
   
   def default_submit_button

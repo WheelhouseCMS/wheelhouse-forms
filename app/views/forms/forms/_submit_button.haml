@@ -1,5 +1,5 @@
 .submit-button{ 'data-index' => index }
-  %input{:type => "hidden", :name => "#{prefix}[type]", :value => submit_button.type}
+  %input{:type => "hidden", :name => "#{prefix}[type]", :value => submit_button.type.demodulize}
   
   .drag= image_tag "wheelhouse-forms/submit-button.png", :alt => "Submit Button", :title => "Submit Button"
   

@@ -1,14 +1,7 @@
 module Forms::Fields
   class SubmitButton < Field
-    property :label, String, :default => "Submit"
+    property :label, String, :default => "Submit", :required => true
     
-    def to_html(template)
-      super { submit_tag(label) }
-    end
-  
-  protected
-    def classes
-      ["field", "submit"]
-    end
+    self.renderer = Forms::SubmitButtonRenderer
   end
 end

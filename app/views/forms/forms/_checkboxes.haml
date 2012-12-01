@@ -1,5 +1,5 @@
 .checkboxes{ 'data-index' => index }
-  %input{:type => "hidden", :name => "#{prefix}[type]", :value => checkboxes.type}
+  %input{:type => "hidden", :name => "#{prefix}[type]", :value => checkboxes.type.demodulize}
   
   .drag= image_tag "wheelhouse-forms/checkboxes.png", :alt => "Checkboxes", :title => "Checkboxes"
   

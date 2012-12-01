@@ -1,5 +1,5 @@
 .states-dropdown{ 'data-index' => index }
-  %input{:type => "hidden", :name => "#{prefix}[type]", :value => states_dropdown.type}
+  %input{:type => "hidden", :name => "#{prefix}[type]", :value => states_dropdown.type.demodulize}
   
   .drag= image_tag "wheelhouse-forms/states.png", :alt => "States Dropdown", :title => "States Dropdown"
   

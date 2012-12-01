@@ -1,5 +1,5 @@
 .field-set{ "data-index" => index }
-  %input{:type => "hidden", :name => "#{prefix}[type]", :value => field_set.type}
+  %input{:type => "hidden", :name => "#{prefix}[type]", :value => field_set.type.demodulize}
   
   .drag
 
