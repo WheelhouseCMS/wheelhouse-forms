@@ -13,7 +13,7 @@ class Forms::Submission < Wheelhouse::BasicResource
       when Hash
         self[params]
       when Array
-        self[*params.flatten]
+        params.each_with_object({}) { |v, hash| hash[v[0]] = v[1] }
       end
     end
     
