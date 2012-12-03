@@ -18,5 +18,9 @@ module Forms
     initializer :precompile_assets do |app|
       app.config.assets.precompile += %w(wheelhouse-forms/admin.*)
     end
+    
+    def self.load_yaml(file)
+      YAML.load(IO.read(File.join(paths["config"].first, file)))
+    end
   end
 end
