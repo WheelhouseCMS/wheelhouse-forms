@@ -24,13 +24,13 @@ module Forms::FormsHelper
   
   def render_fields(fields, prefix)
     fields.map_with_index do |field, index|
-      render(:partial => field.class.partial, :object => field, :locals => { :index => index, :prefix => "#{prefix}[#{index}]", :id => "" })
+      render(:partial => field.class.partial, :object => field, :locals => { :index => index, :prefix => "#{prefix}[#{index}]" })
     end.join("\n").html_safe
   end
   
   def field_template(id, klass)
     jquery_template_tag(id) do
-      render :partial => klass.partial, :object => klass.new, :locals => { :index => "${index}", :prefix => "${prefix}", :id => "${id}" }
+      render :partial => klass.partial, :object => klass.new, :locals => { :index => "${index}", :prefix => "${prefix}" }
     end
   end
 end
