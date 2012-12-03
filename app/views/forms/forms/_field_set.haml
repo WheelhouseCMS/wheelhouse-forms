@@ -1,5 +1,5 @@
 .field-set{ "data-index" => index }
-  = hidden_field_tag :type, field_set.type.demodulize, :id => nil
+  = hidden_field_tag "#{prefix}[type]", field_set.type.demodulize, :id => nil
   
   .drag
 
