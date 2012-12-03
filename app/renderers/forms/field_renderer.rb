@@ -28,9 +28,9 @@ protected
   
   def classes
     classes = ["field", field_class]
+    classes << reference.parameterize
     classes << "required" if field.required?
-    classes << field.reference.parameterize if field.respond_to?(:reference)
-    classes
+    classes.uniq
   end
   
   def html_options

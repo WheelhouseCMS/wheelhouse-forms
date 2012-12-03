@@ -2,6 +2,7 @@ module Forms::Fields
   class StatesDropdown < Field
     property :label, String, :default => "State", :required => true
     property :country, String, :required => true
+    property :required, Boolean, :default => false
 
     self.renderer = Forms::SelectFieldRenderer
 
