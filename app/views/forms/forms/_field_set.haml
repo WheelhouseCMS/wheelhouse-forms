@@ -1,11 +1,11 @@
 .field-set{ "data-index" => index }
-  %input{:type => "hidden", :name => "#{prefix}[type]", :value => field_set.type.demodulize}
+  = hidden_field_tag :type, field_set.type.demodulize, :id => nil
   
   .drag
 
-  .drag-area  
-    %label{:for => "fieldset_#{index}_legend"} Fieldset Legend:
-    %input{:id => "fieldset_#{index}_legend", :type => "text", :name => "#{prefix}[legend]", :value => field_set.legend}
+  .drag-area
+    = label_tag "fieldset_#{index}_legend", "Fieldset Legend:"
+    = text_field_tag "#{prefix}[legend]", field_set.legend, :id => "fieldset_#{index}_legend"
   
     %span.note (leave blank for none)
 

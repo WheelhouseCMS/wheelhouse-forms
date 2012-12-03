@@ -1,9 +1,2 @@
-.submit-button{ 'data-index' => index }
-  %input{:type => "hidden", :name => "#{prefix}[type]", :value => submit_button.type.demodulize}
-  
-  .drag= image_tag "wheelhouse-forms/submit-button.png", :alt => "Submit Button", :title => "Submit Button"
-  
-  .drag-area
-    %input{:type => "text", :name => "#{prefix}[label]", :title => "Submit Button Label", :placeholder => "Submit Button Label", :value => submit_button.label}
-  
-  = link_to "Delete", '#', :class => 'delete'
+= form_field(submit_button, :index => index, :prefix => prefix, :class => "submit-button") do |f|
+  = f.text_field :label, :title => "Submit Button Label", :placeholder => "Submit Button Label", :id => nil

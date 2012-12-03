@@ -1,11 +1,4 @@
-.custom-field{ 'data-index' => index }
-  %input{:type => "hidden", :name => "#{prefix}[type]", :value => custom_field.type.demodulize}
+= form_field(custom_field, :index => index, :prefix => prefix, :class => "custom-field", :icon => "custom") do |f|
+  = f.text_field :label, :title => "Custom Field Label", :placeholder => "Custom Field Label", :id => nil
+  = f.text_field :partial, :title => "Partial", :placeholder => "Partial", :id => nil
   
-  .drag= image_tag "wheelhouse-forms/custom.png", :alt => "Custom Field", :title => "Custom Field"
-  
-  .drag-area
-    %input{:type => "text", :name => "#{prefix}[label]", :title => "Custom Field Label", :placeholder => "Custom Field Label", :value => custom_field.label}
-  
-    %input{:type => "text", :name => "#{prefix}[partial]", :title => "Partial", :placeholder => "Partial", :value => custom_field.partial}
-
-  = link_to "Delete", '#', :class => 'delete'

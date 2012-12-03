@@ -1,9 +1,3 @@
-.content-field{ 'data-index' => index }
-  %input{:type => "hidden", :name => "#{prefix}[type]", :value => content_field.type.demodulize}
+= form_field(content_field, :index => index, :prefix => prefix, :class => "content-field", :icon => "content") do |f|
+  = f.text_area :content, :class => "editor", :rows => 5
   
-  .drag= image_tag "wheelhouse-forms/content.png", :alt => "Content Field", :title => "Content Field"
-  
-  .drag-area
-    %textarea.editor{:name => "#{prefix}[content]", :rows => 5}= content_field.content
-  
-  = link_to "Delete", '#', :class => 'delete'

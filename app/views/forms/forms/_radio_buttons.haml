@@ -1,22 +1,10 @@
-.radio-buttons{ 'data-index' => index }
-  %input{:type => "hidden", :name => "#{prefix}[type]", :value => radio_buttons.type.demodulize}
-  
-  .drag= image_tag "wheelhouse-forms/radio-buttons.png", :alt => "Radio Buttons", :title => "Radio Buttons"
-  
-  .drag-area
-    %input{:type => "text", :name => "#{prefix}[label]", :title => "Radio Buttons Label", :placeholder => "Radio Buttons Label", :value => radio_buttons.label}
-  
-    %label.required
-      %input{:type => "checkbox", :name => "#{prefix}[required]", :value => "1", :checked => radio_buttons.required?}
-      This field is required
-  
-    = link_to "Delete", '#', :class => 'delete'
-  
-    %ul.options
-      %li
-        %label Options:
-      
-      - radio_buttons.options(true).each do |option|
-        %li
-          %input{:type => "text", :name => "#{prefix}[options][]", :value => option}
-  
+= form_field(radio_buttons, :index => index, :prefix => prefix, :class => "radio-buttons") do |f|
+  = f.text_field :label, :title => "Radio Buttons Label", :placeholder => "Radio Buttons Label", :id => nil
+  = f.required_field_checkbox
+
+  %ul.options
+    %li
+      %label Options:
+
+    - radio_buttons.options(true).each do |option|
+      %li= text_field_tag "#{prefix}[options][]", option, :id => nil

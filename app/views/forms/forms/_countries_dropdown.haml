@@ -1,1 +1,4 @@
-= basic_field(countries_dropdown, :index => index, :prefix => prefix, :id => id, :type => "countries-dropdown", :description => "Countries Dropdown", :icon => "countries")
+= form_field(countries_dropdown, :index => index, :prefix => prefix, :class => "countries-dropdown", :icon => "countries") do |f|
+  = f.text_field :label, :title => "Countries Dropdown Label", :placeholder => "Countries Dropdown Label", :id => nil
+  = f.required_field_checkbox
+  

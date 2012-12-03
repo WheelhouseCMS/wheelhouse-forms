@@ -1,21 +1,10 @@
-.select-field{ 'data-index' => index }
-  %input{:type => "hidden", :name => "#{prefix}[type]", :value => select_field.type.demodulize}
-  
-  .drag= image_tag "wheelhouse-forms/select.png", :alt => "Select Field", :title => "Select Field"
-  
-  .drag-area
-    %input{:type => "text", :name => "#{prefix}[label]", :title => "Select Field Label", :placeholder => "Select Field Label", :value => select_field.label}
-  
-    %label.required
-      %input{:type => "checkbox", :name => "#{prefix}[required]", :value => "1", :checked => select_field.required?}
-      This field is required
-  
-    = link_to "Delete", '#', :class => 'delete'
-  
-    %ul.options
-      %li
-        %label Options:
-      
-      - select_field.options(true).each do |option|
-        %li
-          %input{:type => "text", :name => "#{prefix}[options][]", :value => option}
+= form_field(select_field, :index => index, :prefix => prefix, :class => "select-field", :icon => "select") do |f|
+  = f.text_field :label, :title => "Select Field Label", :placeholder => "Select Field Label", :id => nil
+  = f.required_field_checkbox
+
+  %ul.options
+    %li
+      %label Options:
+
+    - select_field.options(true).each do |option|
+      %li= text_field_tag "#{prefix}[options][]", option, :id => nil

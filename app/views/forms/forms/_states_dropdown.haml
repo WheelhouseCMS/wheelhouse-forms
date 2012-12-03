@@ -1,17 +1,4 @@
-.states-dropdown{ 'data-index' => index }
-  %input{:type => "hidden", :name => "#{prefix}[type]", :value => states_dropdown.type.demodulize}
-  
-  .drag= image_tag "wheelhouse-forms/states.png", :alt => "States Dropdown", :title => "States Dropdown"
-  
-  .drag-area
-    %input{:type => "text", :name => "#{prefix}[label]", :title => "States Dropdown Label", :placeholder => "States Dropdown Label", :value => states_dropdown.label}
-  
-    %label.required
-      %input{:type => "checkbox", :name => "#{prefix}[required]", :value => "1", :checked => states_dropdown.required?}
-      This field is required
-  
-    %select{:name => "#{prefix}[country]"}
-      %option{:value => "US"} US States
-      %option{:value => "Australia"} Australian States
-  
-  = link_to "Delete", '#', :class => 'delete'
+= form_field(states_dropdown, :index => index, :prefix => prefix, :class => "states-dropdown", :icon => "states") do |f|
+  = f.text_field :label, :title => "States Dropdown Label", :placeholder => "States Dropdown Label", :id => nil
+  = f.select :country, [["US States", "US"], ["Australian States", "Australia"]], {}, :id => nil
+  = f.required_field_checkbox
