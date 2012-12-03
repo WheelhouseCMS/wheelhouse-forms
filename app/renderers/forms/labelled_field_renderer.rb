@@ -1,5 +1,5 @@
 module Forms::LabelledFieldRenderer
-  def render(options={})
+  def render
     super do
       result = ActiveSupport::SafeBuffer.new
       result << label_tag(name, field.label.html_safe) if field.label?

@@ -17,10 +17,6 @@ The following field types are supported:
  - custom fields
  - nesting within field sets
 
-Features yet to implement:
-
- - server-side submission validation
-
 
 Installation & Usage
 --------------------

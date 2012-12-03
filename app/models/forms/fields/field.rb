@@ -3,8 +3,8 @@ module Forms::Fields
     class_attribute :renderer
     self.renderer = Forms::FieldRenderer
     
-    def renderer
-      self.class.renderer.new(self)
+    def render(submission, template)
+      self.class.renderer.new(self, submission, template).render
     end
     
     def required?

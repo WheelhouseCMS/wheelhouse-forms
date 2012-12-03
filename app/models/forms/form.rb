@@ -21,16 +21,11 @@ class Forms::Form < Wheelhouse::Resource
   attr_accessor :view_context, :current_submission
   
   def to_s
-    render(:template => view_context)
+    render(view_context)
   end
   
-  def render(template_or_options={})
-    options = template_or_options.is_a?(Hash) ? template_or_options : { :template => template_or_options }
-    renderer.render(options.merge(:submission => current_submission))
-  end
-  
-  def renderer
-    Forms::FormRenderer.new(self)
+  def render(template)
+    Forms::FormRenderer.new(self, current_submission, template).render
   end
   
   def submit(params)

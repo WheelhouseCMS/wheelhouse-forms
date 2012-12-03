@@ -15,7 +15,7 @@ class Forms::FieldCollection < MongoModel::Collection[Forms::Fields::Field]
     end
   end
   
-  def renderer
-    Forms::FieldCollectionRenderer.new(self)
+  def render(submission, template)
+    Forms::FieldCollectionRenderer.new(self, submission, template).render
   end
 end

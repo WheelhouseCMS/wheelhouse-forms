@@ -31,6 +31,14 @@ class Forms::Submission < Wheelhouse::BasicResource
   
   default_scope order(:created_at.desc)
   
+  validate do
+    form.fields.each do |field|
+      if field.required? && value_for(field).blank?
+        errors.add(field.label, "This field is required")
+      end
+    end
+  end
+  
   def value_for(field)
     params[field.label]
   end

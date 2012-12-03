@@ -1,11 +1,13 @@
 class Forms::FieldCollectionRenderer
   include ActionView::Helpers::OutputSafetyHelper
   
-  def initialize(collection)
-    @collection = collection
+  attr_reader :collection, :submission, :template
+  
+  def initialize(collection, submission, template)
+    @collection, @submission, @template = collection, submission, template
   end
   
-  def render(options={})
-    safe_join(@collection.map { |field| field.renderer.render(options) }, "\n")
+  def render
+    safe_join(collection.map { |field| field.render(submission, template) }, "\n")
   end
 end

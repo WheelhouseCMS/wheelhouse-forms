@@ -1,5 +1,5 @@
 class Forms::ContentFieldRenderer < Forms::FieldRenderer
-  def render(options={})
+  def render
     field.content.to_s
   end
 end

@@ -3,7 +3,7 @@ class Forms::SelectFieldRenderer < Forms::FieldRenderer
   
   include ActionView::Helpers::FormOptionsHelper
   
-  def render(options={})
-    super { select_tag(name, options_for_select(field.options), html_options) }
+  def render
+    super { select_tag(name, options_for_select(field.options, value), html_options) }
   end
 end

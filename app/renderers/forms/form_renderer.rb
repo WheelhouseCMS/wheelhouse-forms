@@ -2,15 +2,15 @@ class Forms::FormRenderer
   include ActionView::Helpers::FormTagHelper
 
   attr_accessor :output_buffer
-  attr_reader :form
+  attr_reader :form, :submission, :template
   
-  def initialize(form)
-    @form = form
+  def initialize(form, submission, template)
+    @form, @submission, @template = form, submission, template
   end
   
-  def render(options={})
+  def render
     form_tag(form.path) do
-      concat form.fields.renderer.render(options)
+      concat form.fields.render(submission, template)
       concat default_submit_button unless has_submit_button?
     end
   end
