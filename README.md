@@ -1,11 +1,13 @@
 Forms Plugin for Wheelhouse CMS
 ===============================
 
-This gem makes it easy to integrate customizable contact forms into your Wheelhouse CMS site. Form submissions are saved in the CMS and may also be emailed to a given address.
+![Screenshot of forms plugin](https://www.wheelhousecms.com/media/cdfaf962/Forms-Plugin.png)
+
+This gem makes it easy to add customizable forms (such as contact forms) into your [Wheelhouse CMS](https://www.wheelhousecms.com/) site, via an easy-to-use form builder. Form submissions are saved within the CMS and may optionally be emailed to one or more recipients.
 
 The following field types are supported:
 
- - single-line text
+ - single-line text (with HTML5 input types)
  - text areas
  - select/dropdown box
  - single checkboxes
@@ -16,6 +18,11 @@ The following field types are supported:
  - HTML content
  - custom fields
  - nesting within field sets
+
+Other features include:
+
+ - server-side and HTML5 form validation
+ - CSV export of submissions
 
 
 Installation & Usage
@@ -29,4 +36,4 @@ Then run `bundle install`.
 
 **2. Create a new form from the New Page dropdown.**
 
-**3. Copy the form template from `app/templates` to your theme templates folder to customize.**
+**3. To customize, copy the `form.html.haml` template from `app/templates` to your theme templates folder.**

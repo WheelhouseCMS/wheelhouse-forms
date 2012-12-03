@@ -3,7 +3,7 @@ Gem::Specification.new do |s|
   s.platform    = Gem::Platform::RUBY
   s.version     = "1.0"
   s.summary     = "Wheelhouse CMS Forms Plugin"
-  s.description = "Integrates forms into your Wheelhouse CMS site."
+  s.description = "Adds forms to your Wheelhouse CMS site."
 
   s.required_ruby_version     = ">= 1.8.7"
   s.required_rubygems_version = ">= 1.3.6"
