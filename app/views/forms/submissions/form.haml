@@ -11,6 +11,10 @@
   %hr
   
   %p.owner Submitted: #{timestamp(@submission.created_at)}
+  - if @submission.ip_address?
+    %p.owner IP Address: #{@submission.ip_address}
+  
+  %hr
 
 - content_for(:head) do
   = stylesheet_link_tag "wheelhouse-forms/admin"

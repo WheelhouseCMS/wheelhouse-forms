@@ -2,6 +2,7 @@ class Forms::Submission < Wheelhouse::BasicResource
   include Wheelhouse::Resource::AdminPath
   
   property :params, Parameters
+  property :ip_address, String
   property :is_spam, Boolean, :default => false, :protected => true
   timestamps!
   

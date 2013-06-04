@@ -7,7 +7,7 @@ class Forms::FormHandler < Wheelhouse::ResourceHandler
   end
   
   post do
-    @form.submit(params[:submission])
+    @form.submit(params[:submission], request)
   end
 
 private

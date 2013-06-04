@@ -28,8 +28,8 @@ class Forms::Form < Wheelhouse::Resource
     Forms::FormRenderer.new(self, current_submission, template).render
   end
   
-  def submit(params)
-    submission = submissions.build(:params => params)
+  def submit(params, request)
+    submission = submissions.build(:params => params, :ip_address => request.remote_ip)
     
     if submission.save
       deliver(submission)
