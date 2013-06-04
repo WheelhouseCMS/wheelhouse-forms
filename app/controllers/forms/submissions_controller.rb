@@ -7,7 +7,7 @@ class Forms::SubmissionsController < Wheelhouse::ResourceController
   manage_site_breadcrumb
   breadcrumb { [parent.label, parent] }
   
-  actions :show, :destroy
+  actions :show, :destroy, :update
   
   respond_to :csv
   
@@ -15,5 +15,10 @@ class Forms::SubmissionsController < Wheelhouse::ResourceController
     respond_with(parent) do |format|
       format.csv { render :text => Forms::CsvExporter.new(parent).to_csv }
     end
+  end
+  
+  def update
+    resource.set_spam_flag!(params[:spam])
+    respond_with(resource)
   end
 end

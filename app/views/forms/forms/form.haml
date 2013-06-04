@@ -1,4 +1,6 @@
-- tab :submissions => "submissions"
+- tab :submissions do
+  %h2 #{listing_spam? ? "Spam" : "Latest"} Submissions
+  = render "submissions"
 
 - sidebar do
   .buttons
@@ -7,7 +9,12 @@
   %hr
 
   %ul
-    %li= link_to "Export results as CSV", form_submissions_path(@form, :format => :csv), :class => "export-csv"
+    - if listing_spam?
+      %li= link_to "View Latest Submissions", form_path(@form), :class => "latest-submissions"
+    - else
+      %li= link_to "View Spam Submissions", spam_form_path(@form), :class => "spam-submissions"
+      
+    %li= link_to "Export Results as CSV", form_submissions_path(@form, :format => :csv), :class => "export-csv"
   
   %hr
 
@@ -20,3 +27,7 @@
 
 - content_for(:head) do
   = stylesheet_link_tag "wheelhouse-forms/admin"
+
+- content_for(:javascript) do
+  = javascript_include_tag "wheelhouse-forms/submissions"
+  

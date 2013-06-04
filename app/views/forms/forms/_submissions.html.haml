@@ -1,19 +1,16 @@
-- @submissions = resource.submissions.paginate(:page => params[:p])
-
-%h2 Latest Submissions
-
-= table_for Forms::Submission do |table|
+= table_for Forms::Submission, :id => "submissions" do |table|
   - table.rows(@submissions) do |row, submission|
     - row.resource = [@form, submission]
-  
+
     - if resource.first_content_field
       = row.column(resource.first_content_field.label) { submission.value_for(resource.first_content_field) }
-    
+
     = row.column(:submitted_at) { submission.created_at.in_time_zone.to_s(:long) }
-  
+
     = row.controls do |c|
+      = toggle_spam_link(submission, form_submission_path(@form, submission))
       = c.delete
-  
+
   - table.empty do
     No submissions have been posted.
 
