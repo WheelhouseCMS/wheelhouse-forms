@@ -3,15 +3,15 @@ class Forms::Submission < Wheelhouse::BasicResource
   
   property :params, Parameters
   property :ip_address, String
-  property :is_spam, Boolean, :default => false, :protected => true
+  property :spam, Boolean, :default => false, :protected => true
   timestamps!
   
   belongs_to :form, :class => "Forms::Form"
   
   default_scope order(:created_at.desc)
   
-  scope :spam, where(:is_spam => true)
-  scope :not_spam, where(:is_spam.ne => true)
+  scope :spam, where(:spam => true)
+  scope :not_spam, where(:spam.ne => true)
   
   validate do
     form.fields.flatten.each do |field|
@@ -21,8 +21,8 @@ class Forms::Submission < Wheelhouse::BasicResource
     end
   end
   
-  def set_spam_flag!(is_spam)
-    update_attribute(:is_spam, is_spam)
+  def spam!(is_spam)
+    update_attribute(:spam, is_spam)
   end
   
   def value_for(field)

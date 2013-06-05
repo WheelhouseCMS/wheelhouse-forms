@@ -8,7 +8,7 @@ module Forms::SpamHelper
   end
   
   def toggle_spam_link(submission, path)
-    if submission.is_spam?
+    if submission.spam?
       link_to not_spam_icon, path, :class => "not-spam"
     else
       link_to spam_icon, path, :class => "mark-spam"

@@ -18,7 +18,7 @@ class Forms::SubmissionsController < Wheelhouse::ResourceController
   end
   
   def update
-    resource.set_spam_flag!(params[:spam])
+    resource.spam!(params[:spam])
     respond_with(resource)
   end
 end
