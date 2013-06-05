@@ -30,9 +30,10 @@ class Forms::Form < Wheelhouse::Resource
   
   def submit(params, request)
     submission = submissions.build(:params => params, :ip_address => request.remote_ip)
+    Forms::Plugin.config.wheelhouse.forms.spam_filter.check(submission)
     
     if submission.save
-      deliver(submission)
+      deliver(submission) unless submission.spam?
       @success = true
     else
       self.current_submission = submission

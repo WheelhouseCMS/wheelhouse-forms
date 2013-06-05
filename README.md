@@ -23,6 +23,7 @@ Other features include:
 
  - server-side and HTML5 form validation
  - CSV export of submissions
+ - optional spam filtering (via Akismet)
 
 
 Installation & Usage

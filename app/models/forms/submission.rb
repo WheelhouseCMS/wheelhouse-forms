@@ -26,7 +26,7 @@ class Forms::Submission < Wheelhouse::BasicResource
   end
   
   def value_for(field)
-    params[field.label]
+    params[field.label] if field.respond_to?(:label)
   end
   
   def admin_path

@@ -1,11 +1,25 @@
 require "wheelhouse"
 
+begin
+  require "rakismet"
+rescue LoadError
+  # Rakismet not available
+end
+
 module Forms
+  extend ActiveSupport::Autoload
+  
+  autoload :AkismetFilter
+  autoload :NullFilter
+  
   class Plugin < Wheelhouse::Plugin
     config.wheelhouse.forms = ActiveSupport::OrderedOptions.new
     
     # Disable custom fields by default
     config.wheelhouse.forms.custom_fields = false
+    
+    # Set default spam filter
+    config.wheelhouse.forms.spam_filter = defined?(Rakismet) ? AkismetFilter : NullFilter
     
     isolate_namespace Forms
     
