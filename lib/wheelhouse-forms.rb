@@ -30,7 +30,7 @@ module Forms
     end
     
     initializer :precompile_assets do |app|
-      app.config.assets.precompile += %w(wheelhouse-forms/admin.*)
+      app.config.assets.precompile += %w(wheelhouse-forms/admin.* wheelhouse-forms/submissions.js)
     end
     
     def self.load_yaml(file)
