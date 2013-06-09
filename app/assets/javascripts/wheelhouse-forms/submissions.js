@@ -12,7 +12,7 @@ function updateSubmission(url, spam, callback) {
     }
   });
   
-  Wheelhouse.Flash.loading("Marking submission as spam.");
+  Wheelhouse.Flash.loading("Updating submission.");
 }
 
 function clickHandler(spam) {
