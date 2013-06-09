@@ -7,6 +7,9 @@
 - sidebar do
   .buttons
     = button "Back to list", :url => @form
+    
+    = button "Mark submission as spam", :class => "secondary dark mark-spam", :icon => "wheelhouse-forms/spam-small.png", :style => @submission.spam? ? "display: none" : ""
+    = button "Submission is not spam", :class => "secondary not-spam", :icon => "wheelhouse-forms/not-spam-small.png", :style => !@submission.spam? ? "display: none" : ""
   
   %hr
   
@@ -18,3 +21,6 @@
 
 - content_for(:head) do
   = stylesheet_link_tag "wheelhouse-forms/admin"
+
+- content_for(:javascript) do
+  = javascript_include_tag "wheelhouse-forms/submissions"
