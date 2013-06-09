@@ -7,6 +7,11 @@ module Forms
       submission.spam = true if filter.spam?
     end
     
+    def self.train(submission, is_spam)
+      filter = new(submission)
+      is_spam ? filter.spam! : filter.ham!
+    end
+    
     def initialize(submission)
       @submission = submission
     end
