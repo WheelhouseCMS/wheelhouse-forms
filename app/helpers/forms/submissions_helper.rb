@@ -15,7 +15,7 @@ module Forms::SubmissionsHelper
         value = @submission.value_for(field)
         form.text_area field.label, :value => value || "", :readonly => true, :rows => 5
       end
-    when Forms::Fields::ContentField
+    when Forms::Fields::ContentField, Forms::Fields::SubmitButton
       # Nothing
     else
       labelled_field(field) do
