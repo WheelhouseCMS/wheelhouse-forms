@@ -1,10 +1,18 @@
 $.fn.options = function() {
+  function addField(li) {
+    var next = li.clone().find('div').remove().end().insertAfter(li);
+    next.find('input').val('').width('auto').autoGrowInput().focus();
+  }
+  
   return $(this).each(function() {
     $(this).delegate("li input", "blur", function() {
       var li = $(this).parent();
+      var value = $(this).val();
       
-      if ($(this).val() == "" && !li.is(":last-child")) {
+      if (value == "" && !li.is(":last-child")) {
         li.remove();
+      } else if (value != "" && li.is(":last-child")) {
+        addField(li);
       }
     });
     
@@ -14,8 +22,7 @@ $.fn.options = function() {
         e.preventDefault();
         
         var li = $(this).parent();
-        var next = li.clone().find('div').remove().end().insertAfter(li);
-        next.find('input').val('').width('auto').autoGrowInput().focus();
+        addField(li);
       }
     });
     
