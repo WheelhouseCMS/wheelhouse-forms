@@ -18,7 +18,7 @@ class Forms::Form < Wheelhouse::Resource
   
   icon "wheelhouse-forms/form.png"
   
-  attr_accessor :view_context, :current_submission
+  attr_accessor :view_context, :current_submission, :success
   
   def to_s
     render(view_context)
@@ -34,10 +34,10 @@ class Forms::Form < Wheelhouse::Resource
     
     if submission.save
       deliver(submission) unless submission.spam?
-      @success = true
+      self.success = true
     else
       self.current_submission = submission
-      @success = false
+      self.success = false
     end
   end
   
