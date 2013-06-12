@@ -38,3 +38,21 @@ Then run `bundle install`.
 **2. Create a new form from the New Page dropdown.**
 
 **3. To customize, copy the `form.html.haml` template from `app/templates` to your theme templates folder.**
+
+
+### Spam Filtering with Akismet
+
+Spam filtering support requires an Akismet API key. Sign up for one at <https://akismet.com/signup/>.
+
+**1. Add `rakismet` to your Gemfile:**
+
+    gem "rakismet"
+    
+Then run `bundle install`.
+
+**2. Add your Akismet API key and web site URL to `config/application.rb`.**
+
+    config.rakismet.key = "1234abcd1234"
+    config.rakismet.url = "http://www.example.com/"
+
+**3. Restart your Rails server. The forms plugin will automatically use Rakismet if it is configured.**
