@@ -1,5 +1,5 @@
 - tab :fields do
-  #fields{ "data-prefix" => "form[fields]" }
+  #fields.fields{ "data-prefix" => "form[fields]" }
     = render_fields(@form.fields, "form[fields]")
   
   = field_template "field-set-template", Forms::Fields::FieldSet

@@ -72,33 +72,32 @@ root.delegate('a.delete', 'click', function() {
   return false;
 });
 
+function replacePrefix(input, prefix) {
+  var name = $(input).attr('name').replace(/.*(\[[^\[\]]+\](\[\])?)$/, "$1");
+  $(input).attr('name', prefix + name);
+}
 
-function refreshFields() {
-  function replacePrefix(input, prefix) {
-    var name = $(input).attr('name').replace(/.*(\[[^\[\]]+\](\[\])?)$/, "$1");
-    $(input).attr('name', prefix + name);
-  }
+function updateFieldPrefixes(root) {
+  var children = $('> div', root);
   
-  $('#fields > div').each(function(index) {
-    var prefix = $('#fields').attr("data-prefix") + "[" + index + "]";
-    $(this).attr('data-index', index);
+  children.each(function(index) {
+    var field = $(this);
+    field.attr('data-index', index);
     
-    $('input:not(.fields input), textarea:not(.fields textarea), select:not(.fields select)', this).each(function() {
+    var prefix = prefixFor(root, index);
+    
+    $('input, textarea, select', field).each(function() {
       replacePrefix(this, prefix);
     });
-    $('> .fields', this).attr('data-prefix', prefix + "[fields]");
-  });
-  
-  $('.fields').each(function() {
-    var fieldsPrefix = $(this).attr('data-prefix');
     
-    $('> div', this).each(function(index) {
-      var prefix = fieldsPrefix + "[" + index + "]";
-      $(this).attr('data-index', index);
-      
-      $('input, textarea, select', this).each(function() { replacePrefix(this, prefix); });
-    });
+    var subfields = $('> .fields', field);
+    subfields.attr('data-prefix', prefix + "[fields]");
+    updateFieldPrefixes(subfields)
   });
+}
+
+function refreshFields() {
+  updateFieldPrefixes(root);
 }
 
 var BaseSortableOptions = {
