@@ -12,7 +12,7 @@ protected
 
   def checkbox(option)
     content_tag(:label, :class => "option #{option.parameterize}") do
-      check_box_tag("#{name}[]", option, (value || []).include?(option), :id => nil) + " " + option
+      check_box_tag("#{name}[]", option, (value || []).include?(option), :id => nil) + " " + option.html_safe
     end
   end
 end

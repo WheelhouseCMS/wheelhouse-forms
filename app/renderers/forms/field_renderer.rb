@@ -25,6 +25,10 @@ protected
     field.label
   end
   
+  def label
+    field.label.html_safe
+  end
+  
   def field_class
     field.class.partial.dasherize
   end

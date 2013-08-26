@@ -12,7 +12,7 @@ protected
 
   def radio_button(option)
     content_tag(:label, :class => "option #{option.parameterize}") do
-      radio_button_tag(name, option, value == option, :id => nil) + " " + option
+      radio_button_tag(name, option, value == option, :id => nil) + " " + option.html_safe
     end
   end
 end
