@@ -6,6 +6,12 @@ $(function() {
 var root = $('#fields');
 var target;
 
+var nextId = 0;
+function uniqueId() {
+  ++nextId;
+  return "content-" + nextId;
+}
+
 function resetTarget() {
   target = $('.fields:last', root);
   if (target.length < 1) target = root;
@@ -41,7 +47,9 @@ $('.tools li.radio-buttons a').click(insertFieldHandler("#radio-buttons-template
 $('.tools li.states-dropdown a').click(insertFieldHandler("#states-dropdown-template"));
 $('.tools li.countries-dropdown a').click(insertFieldHandler("#countries-dropdown-template"));
 $('.tools li.content-field a').click(insertFieldHandler("#content-field-template", false, function(field) {
-  $('textarea.editor', field).editor();
+  var textarea = $('textarea.editor', field);
+  textarea.attr('id', uniqueId());
+  textarea.editor();
 }));
 $('.tools li.custom-field a').click(insertFieldHandler("#custom-field-template"));
 
