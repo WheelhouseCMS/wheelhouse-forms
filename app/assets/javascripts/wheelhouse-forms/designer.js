@@ -116,7 +116,6 @@ var BaseSortableOptions = {
   handle:      '> .drag',
   placeholder: 'drag-placeholder',
   tolerance:   'intersect',
-  toleranceElement: '> .drag-area',
   connectWith: '.fields',
   forcePlaceholderSize: true,
   start: function(e, ui) {
