@@ -1,0 +1,28 @@
+%field
+  position: relative
+  margin: 10px 0
+  padding: 0 0 0 32px
+  +border-radius(4px)
+
+=colored-field( $background, $border, $text )
+  background: $background
+  border: 1px solid $border
+  
+  label
+    color: $text
+  
+  .drag
+    border-right: 1px solid $border
+
+=blue
+  +colored-field(#f3f7fa, #cbd4da, #76828a)
+
+=green
+  +colored-field(#f3f8f4, #d3dbd2, #748572)
+
+=orange
+  +colored-field(#faf8f0, #e1ddc8, #8c8977)
+
+=purple
+  +colored-field(#fdfafd, #e3d2e3, #987898)
+  

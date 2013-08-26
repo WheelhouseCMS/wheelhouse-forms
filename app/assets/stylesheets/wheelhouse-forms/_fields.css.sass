@@ -1,0 +1,157 @@
+.drag-area
+  padding: 6px
+  margin-left: -32px
+  padding-left: 38px
+  
+  .field-set > &
+    margin-left: -14px
+    padding-left: 20px
+
+.field
+  li
+    margin-bottom: 0.2em
+
+.fields
+  label
+    display: inline
+    
+  input[type=text]
+    width: 40%
+    display: inline
+
+  select
+    margin: 0.4em 0
+    padding: 0.5% 0.2% 0.2% 0.2%
+    font-size: 110%
+
+  input, select
+    font-size: 100%
+    
+    &.placeholder
+      color: #ccc
+  
+  label
+    color: #545454
+    font-weight: bold
+    margin-right: 0.5em
+    
+    &.required
+      float: right
+      margin: 0.5em 0
+      margin-right: 10%
+      font-weight: normal
+      font-size: 95%
+      
+      input
+        margin-right: 4px
+  
+  span.note
+    font-size: 95%
+    color: #a9a9a9
+  
+  .field-set
+    @extend %field
+    background: #fdfefe
+    border: 1px solid #ccc
+    padding-left: 14px
+    
+    .placeholder, .text-field, .text-area, .select-field, .checkbox, .submit-button, .states-dropdown, .countries-dropdown, .radio-buttons, .checkboxes, .custom-field, .content-field
+      margin-left: 0
+      margin-right: 0
+    
+    .fields
+      margin-right: 5px
+    
+  .text-field, .text-area, .select-field, .checkbox, .submit-button, .states-dropdown, .countries-dropdown, .radio-buttons, .checkboxes, .custom-field, .content-field
+    @extend %field
+    min-height: 26px
+    
+    input[type=text]
+      width: 47%
+      
+    select
+      display: inline
+      width: 17%
+      margin-left: 2%
+    
+    .drag
+      width: 24px
+    
+    a.delete
+      top: 12px
+      right: 8px
+  
+  .text-field, .text-area, .content-field
+    +blue
+  
+  .checkbox, .radio-buttons, .checkboxes
+    +orange
+  
+  .select-field, .states-dropdown, .countries-dropdown
+    +green
+  
+  .submit-button, .custom-field
+    +purple
+  
+  .drag-placeholder
+    @extend %field
+    border: 1px dashed #ccc
+    padding: 6px 6px 6px 38px
+  
+  .content-field
+    a.delete
+      top: 14px
+      right: 14px
+    
+  .field-set .content-field
+    a.delete
+      right: 12px
+  
+  .custom-field
+    input[type=text]
+      width: 40%
+  
+  ul.options
+    line-height: 2.6em
+    min-height: 2em
+    margin-top: 0.5em
+    
+    li
+      display: inline
+      margin-right: 5px
+    
+      input[type=text]
+        width: auto
+        min-width: 8em
+  
+  .drag
+    position: absolute
+    top: 0
+    left: 0
+    cursor: move
+    width: 7px
+    height: 100%
+    background: image-url("wheelhouse/backgrounds/drag.png") repeat
+    border-right: 1px solid #dfdfdf
+    +border-left-radius(4px)
+    
+    img
+      margin: 12px 4px
+  
+  .fields
+    min-height: 100px
+  
+  a.delete
+    position: absolute
+    right: 14px
+    top: 16px
+    z-index: 99
+    width: 16px
+    height: 16px
+    background: image-url("wheelhouse/icons/delete-item.png") no-repeat
+    text-indent: -9999px
+    opacity: 0.5
+    
+    &:hover
+      opacity: 1.0
+      
