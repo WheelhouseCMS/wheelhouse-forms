@@ -9,8 +9,8 @@
   
     %span.note (leave blank for none)
 
-  .fields{ "data-prefix" => "form[fields][#{index}][fields]" }
-    = render_fields(field_set.fields, "form[fields][#{index}][fields]")
+  .fields{ "data-prefix" => "#{prefix}[fields]" }
+    = render_fields(field_set.fields, "#{prefix}[fields]")
   
   = link_to "Delete", '#', :class => 'delete'
   
