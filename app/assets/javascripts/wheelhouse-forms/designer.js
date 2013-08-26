@@ -28,6 +28,7 @@ function insertFieldHandler(template, optionize, callback) {
     var field = $(template).tmpl({ index: nextIndex, prefix: prefixFor(target, nextIndex) });
 
     field.appendTo(target);
+    $.scrollTo(field, { duration: 300 });
     $('input[placeholder]', field).placeholder().click();
     
     if (optionize) { $('ul.options', field).options(); }
