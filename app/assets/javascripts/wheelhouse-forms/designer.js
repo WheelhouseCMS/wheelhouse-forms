@@ -57,7 +57,9 @@ $('.tools li.custom-field a').click(insertFieldHandler("#custom-field-template")
 $('.tools li.field-set a').click(function() {
   var nextIndex = parseInt($('#fields > :last-child').attr('data-index')) + 1 || 0;
   var fieldset = $('#field-set-template').tmpl({ index: nextIndex, prefix: prefixFor(root, nextIndex) });
+  
   fieldset.appendTo(root);
+  $.scrollTo(fieldset, { duration: 300 });
   
   target = $('.fields', fieldset);
   target.sortable(SortableOptions);
