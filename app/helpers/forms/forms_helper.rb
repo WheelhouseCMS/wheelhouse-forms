@@ -9,12 +9,11 @@ module Forms::FormsHelper
   
   def form_field(field, options={}, &block)
     builder = FormBuilder.new(options[:prefix], field, self, {}, block)
-    icon = options[:icon] || field.class.model_name.demodulize.underscore.dasherize
     
     content_tag(:div, :class => options[:class], :data => { :index => options[:index] }) do
       concat builder.hidden_field(:type, :value => field.type.demodulize, :id => nil)
       
-      concat content_tag(:div, image_tag("wheelhouse-forms/#{icon}.png", :alt => field.class.model_name.human, :title => field.class.model_name.human), :class => "drag")
+      concat content_tag(:div, form_field_icon(field, options), :class => "drag")
       
       concat content_tag(:div, capture(builder, &block), :class => "drag-area")
       
@@ -32,5 +31,11 @@ module Forms::FormsHelper
     jquery_template_tag(id) do
       render :partial => klass.partial, :object => klass.new, :locals => { :index => "${index}", :prefix => "${prefix}" }
     end
+  end
+  
+  def form_field_icon(field, options)
+    model_name = field.class.model_name
+    icon = options[:icon] || model_name.demodulize.underscore.dasherize
+    image_tag("wheelhouse-forms/#{icon}.png", :alt => model_name.human, :title => model_name.human)
   end
 end
