@@ -131,4 +131,21 @@ var SortableOptions = $.extend({}, BaseSortableOptions, { connectWith: '#fields,
 $('#fields').sortable(BaseSortableOptions); // Top-level
 $('.fields').sortable(SortableOptions);     // Fieldsets
 
+$('input:checkbox[data-disable]').on('toggled', function() {
+  var selector = $(this).attr('data-disable');
+  var target = $(selector);
+  
+  if ($(this).is(':checked')) {
+    target.removeClass('disabled')
+    target.find('input').removeClass('disabled').removeAttr('disabled');
+  } else {
+    target.addClass('disabled');
+    target.find('input').addClass('disabled').attr('disabled', 'disabled');
+  }
+}).click(function() {
+  $(this).trigger('toggled');
+}).each(function() {
+  $(this).trigger('toggled');
+});
+
 });

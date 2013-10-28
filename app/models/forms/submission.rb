@@ -21,6 +21,10 @@ class Forms::Submission < Wheelhouse::BasicResource
     end
   end
   
+  def email
+    params.find { |label, value| label =~ /e-?mail/i }.last
+  end
+  
   def spam!(is_spam)
     Forms::Plugin.config.wheelhouse.forms.spam_filter.train(self, is_spam)
     update_attribute(:spam, is_spam)

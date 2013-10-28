@@ -23,12 +23,27 @@
   = content
 
 - tab :email do
-  = field :recipients do
-    = form.text_field :recipients, :value => @form.recipients.join(', ')
-    = note "Separate email addresses with commas."
+  = field :submission_notification, :label => false, :class => "title" do
+    = form.check_box :submission_notification, :label => "Submission Notification", :data => { :disable => "#submission-notification-options" }
   
-  = field :subject do
-    = form.text_field :subject
+  #submission-notification-options.shaded
+    = field :recipients do
+      = form.text_field :recipients, :value => @form.recipients.join(', ')
+      = note "Separate email addresses with commas."
+  
+    = field :subject do
+      = form.text_field :subject
+  
+  = field :confirmation_email, :label => false, :class => "title" do
+    = form.check_box :confirmation_email, :label => "Confirmation Email", :data => { :disable => "#confirmation-email-options" }
+    = note "Confirmation emails will be sent to the first form field with a label containing \"email\"."
+    
+  #confirmation-email-options.shaded
+    = field :confirmation_email_subject do
+      = form.text_field :confirmation_email_subject
+    
+    = field :confirmation_email_body do
+      = form.text_area :confirmation_email_body, :rows => 20
 
 - sidebar do
   = render "wheelhouse/admin/resource/default_sidebar"

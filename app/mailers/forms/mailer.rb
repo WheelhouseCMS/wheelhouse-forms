@@ -4,8 +4,15 @@ class Forms::Mailer < ActionMailer::Base
   def submission(form, submission)
     @form, @submission = form, submission
     
-    mail(:from => "no-reply@#{form.site.domain}",
-         :to => form.recipients,
+    mail(:from    => form.email_sender,
+         :to      => form.recipients,
          :subject => form.subject)
+  end
+  
+  def confirmation(form, submission)
+    mail(:from    => form.email_sender,
+         :to      => submission.email,
+         :subject => form.confirmation_email_subject,
+         :body    => form.confirmation_email_body)
   end
 end

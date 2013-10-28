@@ -7,8 +7,14 @@ class Forms::Form < Wheelhouse::Resource
   
   property :title, String, :required => true, :translate => true
   property :fields, FieldCollection, :default => [Forms::Fields::FieldSet.new]
+  
+  property :submission_notification, Boolean, :default => true
   property :recipients, MongoModel::Collection[String]
   property :subject, String, :default => "Form Submission"
+  
+  property :confirmation_email, Boolean, :default => false
+  property :confirmation_email_subject, String
+  property :confirmation_email_body, String
   
   validates_associated :fields
   
@@ -41,8 +47,13 @@ class Forms::Form < Wheelhouse::Resource
     end
   end
   
+  def email_sender
+    "noreply@#{site.domain}"
+  end
+  
   def deliver(submission)
-    Forms::Mailer.submission(self, submission).deliver unless recipients.empty?
+    Forms::Mailer.submission(self, submission).deliver if deliver_submission_notification?
+    Forms::Mailer.confirmation(self, submission).deliver if deliver_confirmation_email?(submission)
   rescue
     # Mail delivery failed
   end
@@ -62,5 +73,14 @@ class Forms::Form < Wheelhouse::Resource
   
   def handler
     Forms::FormHandler
+  end
+
+protected
+  def deliver_submission_notification?
+    submission_notification? && recipients.any?
+  end
+  
+  def deliver_confirmation_email?(submission)
+    confirmation_email? && submission.email.present?
   end
 end
