@@ -137,10 +137,10 @@ $('input:checkbox[data-disable]').on('toggled', function() {
   
   if ($(this).is(':checked')) {
     target.removeClass('disabled')
-    target.find('input').removeClass('disabled').removeAttr('disabled');
+    target.find('input, textarea').removeClass('disabled').removeAttr('disabled');
   } else {
     target.addClass('disabled');
-    target.find('input').addClass('disabled').attr('disabled', 'disabled');
+    target.find('input, textarea').addClass('disabled').attr('disabled', 'disabled');
   }
 }).click(function() {
   $(this).trigger('toggled');
