@@ -35,7 +35,7 @@ module Forms::FormsHelper
   
   def form_field_icon(field, options)
     model_name = field.class.model_name
-    icon = options[:icon] || model_name.demodulize.underscore.dasherize
+    icon = options[:icon] || model_name.to_s.demodulize.underscore.dasherize
     image_tag("wheelhouse-forms/#{icon}.png", :alt => model_name.human, :title => model_name.human)
   end
 end
