@@ -1,5 +1,13 @@
 module Forms::FormsHelper
   class FormBuilder < ActionView::Helpers::FormBuilder
+    def initialize(field, prefix, template)
+      if ActionPack::VERSION::STRING >= "4.0.0"
+        super(prefix, field, template, {})
+      else
+        super(prefix, field, template, {}, nil)
+      end
+    end
+    
     def required_field_checkbox
       @template.content_tag(:label, :class => "required") do
         check_box(:required, :id => nil) + " This field is required"
@@ -8,7 +16,7 @@ module Forms::FormsHelper
   end
   
   def form_field(field, options={}, &block)
-    builder = FormBuilder.new(options[:prefix], field, self, {}, block)
+    builder = FormBuilder.new(field, options[:prefix], self)
     
     content_tag(:div, :class => options[:class], :data => { :index => options[:index] }) do
       concat builder.hidden_field(:type, :value => field.type.demodulize, :id => nil)
