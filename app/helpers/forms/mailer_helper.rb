@@ -52,8 +52,13 @@ private
   
   def render_text_field(field, value)
     labelled_field(field) do
-      concat field.is_a?(Forms::Fields::TextArea) ? tag(:br) : " "
-      concat value
+      if field.is_a?(Forms::Fields::TextArea)
+        concat tag(:br)
+        concat simple_format(value)
+      else
+        concat " "
+        concat value
+      end
     end
   end
   
