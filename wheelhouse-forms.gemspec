@@ -1,7 +1,7 @@
 Gem::Specification.new do |s|
   s.name        = "wheelhouse-forms"
   s.platform    = Gem::Platform::RUBY
-  s.version     = "1.2"
+  s.version     = "1.2.1"
   s.summary     = "Wheelhouse CMS Forms Plugin"
   s.description = "Integrates forms into your Wheelhouse CMS site."
 
