@@ -9,8 +9,9 @@ class Forms::Form < Wheelhouse::Resource
   property :fields, FieldCollection, :default => [Forms::Fields::FieldSet.new]
   
   property :submission_notification, Boolean, :default => true
-  property :recipients, MongoModel::Collection[String]
-  property :subject, String, :default => "Form Submission"
+  property :notification_email_sender, String
+  property :notification_email_recipients, MongoModel::Collection[String], :as => 'recipients'
+  property :notification_email_subject, String, :default => "Form Submission", :as => 'subject'
   
   property :confirmation_email, Boolean, :default => false
   property :confirmation_email_sender, String
@@ -48,6 +49,10 @@ class Forms::Form < Wheelhouse::Resource
     end
   end
 
+  def notification_email_sender
+    read_attribute(:notification_email_sender).presence || default_email_sender
+  end
+
   def confirmation_email_sender
     read_attribute(:confirmation_email_sender).presence || default_email_sender
   end
@@ -71,9 +76,9 @@ class Forms::Form < Wheelhouse::Resource
     @first_content_field ||= fields.flatten.find { |f| f.respond_to?(:label) }
   end
   
-  def recipients=(recipients)
+  def notification_email_recipients=(recipients)
     recipients = recipients.split(/,/) if recipients.is_a?(String)
-    write_attribute(:recipients, recipients.map(&:strip))
+    write_attribute(:notification_email_recipients, recipients.map(&:strip))
   end
   
   def handler
@@ -82,7 +87,7 @@ class Forms::Form < Wheelhouse::Resource
 
 protected
   def deliver_submission_notification?
-    submission_notification? && recipients.any?
+    submission_notification? && notification_email_recipients.any?
   end
   
   def deliver_confirmation_email?(submission)

@@ -27,12 +27,15 @@
     = form.check_box :submission_notification, :label => "Submission Notification", :data => { :disable => "#submission-notification-options" }
   
   #submission-notification-options.shaded
-    = field :recipients do
-      = form.text_field :recipients, :value => @form.recipients.join(', ')
+    = field :notification_email_recipients do
+      = form.text_field :notification_email_recipients, :value => @form.notification_email_recipients.join(', ')
       = note "Separate email addresses with commas."
+
+    = field :notification_email_sender do
+      = form.text_field :notification_email_sender, :placeholder => @form.default_email_sender
   
-    = field :subject do
-      = form.text_field :subject
+    = field :notification_email_subject do
+      = form.text_field :notification_email_subject
   
   = field :confirmation_email, :label => false, :class => "title" do
     = form.check_box :confirmation_email, :label => "Confirmation Email", :data => { :disable => "#confirmation-email-options" }
