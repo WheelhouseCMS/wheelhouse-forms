@@ -4,7 +4,8 @@
   %head
   
   %body
-    %p= link_to "View this submission online", @submission.admin_url
+    - if Rails.application.config.wheelhouse.forms.show_admin_link_in_notifications
+      %p= link_to "View this submission online", @submission.admin_url
     
     %p
       %strong Submitted at:
