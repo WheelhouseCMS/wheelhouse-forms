@@ -4,14 +4,14 @@ class Forms::Mailer < ActionMailer::Base
   def submission(form, submission)
     @form, @submission = form, submission
     
-    mail(:from    => form.email_sender,
-         :to      => form.recipients,
+    mail(:to      => form.recipients,
+         :from    => form.default_email_sender,
          :subject => form.subject)
   end
   
   def confirmation(form, submission)
-    mail(:from    => form.email_sender,
-         :to      => submission.email,
+    mail(:to      => submission.email,
+         :from    => form.confirmation_email_sender,
          :subject => form.confirmation_email_subject,
          :body    => form.confirmation_email_body)
   end

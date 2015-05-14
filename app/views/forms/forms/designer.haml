@@ -39,6 +39,9 @@
     = note "Confirmation emails will be sent to the first form field with a label containing \"email\"."
     
   #confirmation-email-options.shaded
+    = field :confirmation_email_sender do
+      = form.text_field :confirmation_email_sender, :placeholder => @form.default_email_sender
+
     = field :confirmation_email_subject do
       = form.text_field :confirmation_email_subject
     

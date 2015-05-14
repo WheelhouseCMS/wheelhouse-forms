@@ -13,6 +13,7 @@ class Forms::Form < Wheelhouse::Resource
   property :subject, String, :default => "Form Submission"
   
   property :confirmation_email, Boolean, :default => false
+  property :confirmation_email_sender, String
   property :confirmation_email_subject, String
   property :confirmation_email_body, String
   
@@ -46,8 +47,12 @@ class Forms::Form < Wheelhouse::Resource
       self.success = false
     end
   end
+
+  def confirmation_email_sender
+    read_attribute(:confirmation_email_sender).presence || default_email_sender
+  end
   
-  def email_sender
+  def default_email_sender
     "noreply@#{site.domain}"
   end
   
