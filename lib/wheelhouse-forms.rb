@@ -34,7 +34,7 @@ module Forms
     end
     
     initializer :precompile_assets do |app|
-      app.config.assets.precompile += %w(wheelhouse-forms/admin.* wheelhouse-forms/designer.js wheelhouse-forms/submissions.js)
+      app.config.assets.precompile += %w(wheelhouse-forms/admin.* wheelhouse-forms/designer.js wheelhouse-forms/submissions.js wheelhouse-forms/*.png)
     end
     
     def self.load_yaml(file)
