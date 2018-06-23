@@ -7,7 +7,7 @@ class Forms::FormHandler < Wheelhouse::ResourceHandler
   end
 
   post do
-    detect_spam(honeypot: :referral_code, scope: :submission)
+    detect_spam(honeypot: :referral_code, scope: :submission, timestamp_enabled: false)
     @form.submit(submission_params, request) unless performed?
   end
 
