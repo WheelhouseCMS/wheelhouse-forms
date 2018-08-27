@@ -16,7 +16,7 @@ private
   end
 
   def submission_params
-    if params.respond_to?(:require)
+    if params.respond_to?(:permit!)
       params.require(:submission).permit!
     else
       params[:submission]
