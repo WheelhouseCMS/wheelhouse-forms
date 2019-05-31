@@ -7,7 +7,9 @@ class Forms::FormHandler < Wheelhouse::ResourceHandler
   end
 
   post do
-    @form.submit(submission_params, request)
+    if verify_recaptcha(action: 'submit', minimum_score: 0.5)
+      @form.submit(submission_params, request)
+    end
   end
 
 private
