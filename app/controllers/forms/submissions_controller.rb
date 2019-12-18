@@ -13,7 +13,7 @@ class Forms::SubmissionsController < Wheelhouse::ResourceController
 
   def index
     respond_with(parent) do |format|
-      format.csv { render :text => Forms::CsvExporter.new(parent).to_csv }
+      format.csv { render :plain => Forms::CsvExporter.new(parent).to_csv }
     end
   end
 
