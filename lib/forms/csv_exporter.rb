@@ -1,29 +1,29 @@
 require 'csv'
 
 class Forms::CsvExporter
-  def initialize(form)
-    @form = form
+  def initialize(form, submissions=form.submissions.not_spam)
+    @form, @submissions = form, submissions
   end
-  
+
   def to_csv
     CSV.generate do |csv|
       csv << headers
-      
-      @form.submissions.each do |submission|
+
+      @submissions.each do |submission|
         csv << values(submission)
       end
     end
   end
-  
+
 private
   def headers
     ["Submitted at"] + fields.map(&:label)
   end
-  
+
   def values(submission)
     [submission.created_at] + fields.map { |field|
       value = submission.value_for(field)
-      
+
       case value
       when Array
         value.join(", ")
