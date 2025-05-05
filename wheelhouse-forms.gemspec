@@ -16,5 +16,5 @@ Gem::Specification.new do |s|
   s.require_path = "lib"
 
   s.add_dependency "wheelhouse", "~> 1.0"
-  s.add_dependency "recaptcha", "~> 4.14"
+  s.add_dependency "recaptcha", "~> 5.9"
 end
